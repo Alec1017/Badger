@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/alec/dev/badger/contracts/MyNFT.sol": {
-      "lastModificationDate": 1619296136861,
-      "contentHash": "fdd94c33df20509e815f5126698d5490",
+      "lastModificationDate": 1619385474710,
+      "contentHash": "5daecc39271940a91c7b92c58d01365f",
       "sourceName": "contracts/MyNFT.sol",
       "solcConfig": {
         "version": "0.7.3",

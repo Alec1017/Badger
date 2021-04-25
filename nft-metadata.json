@@ -1,0 +1,10 @@
+{
+    "attributes" : [ {
+      "some_attribute" : "Color",
+      "value" : "Turquoise"
+    }],
+    "description" : "An image of a dino",
+    "image" : "https://gateway.pinata.cloud/ipfs/QmYPp5PxM93L1wLRbiL9gTixWSNP18mAVRnxXV1VJpro39",
+    "name" : "Dino",
+    "author": "Bryce Krause"
+}
