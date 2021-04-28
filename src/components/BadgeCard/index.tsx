@@ -11,7 +11,9 @@ type BadgeCardProps = {
 const BadgeCard = ({image, title, description }: BadgeCardProps) => {
     return (
         <div>
-
+            <img alt="icon" src={image}/>
+            <div>{title}</div>
+            <div>{description}</div>
         </div>
     )
 }
