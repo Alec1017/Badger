@@ -1,30 +1,20 @@
-import React from 'react';
+import React from 'react'
+import { useWeb3React } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers'
 
-import logo from './logo.svg';
-import './App.css';
+import { injectedConnector } from './connectors'
 
 import Wallet from './components/Wallet'
+import Nav from './components/Nav'
 
 function App() {
+    const { chainId, account, activate, deactivate, active } = useWeb3React<Web3Provider>()
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-            <div>
-              <Wallet />
-            </div>
+        <div>
+            <Nav>
+                <Wallet account={account || ''} active={active} activate={activate} deactivate={deactivate} connector={injectedConnector} />
+            </Nav>
         </div>
     )
 }

@@ -1,22 +1,22 @@
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import { Web3ReactProvider } from '@web3-react/core'
-import './index.css'
+import  { ThemeProvider } from 'styled-components'
+
 import App from './App'
-import reportWebVitals from './reportWebVitals'
 
 import { getLibrary } from './connectors'
+import { ResetStyle, ThemedGlobalStyle, theme } from './theme'
 
 ReactDOM.render(
   <StrictMode>
+    <ResetStyle />
     <Web3ReactProvider getLibrary={getLibrary}>
+      <ThemeProvider theme={theme}>
+        <ThemedGlobalStyle />
         <App />
+      </ThemeProvider>
     </Web3ReactProvider>
   </StrictMode>,
   document.getElementById('root')
 )
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
