@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { darken } from 'polished'
 
 
 export const WalletButton = styled.button`
@@ -16,5 +17,10 @@ export const WalletButton = styled.button`
         background: ${props => props.theme.buttonPrimary};
         color: ${props => props.theme.buttonSecondary};
         border: 2px solid ${props => props.theme.buttonSecondary};
+        cursor: pointer;
+    }
+
+    &:active {
+        background: ${props => darken(0.2, props.theme.buttonPrimary)}
     }
 `
