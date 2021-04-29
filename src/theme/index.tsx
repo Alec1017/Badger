@@ -12,10 +12,13 @@ export const colors = {
     // pinks
     charm: '#DB7093',
 
-    //grays
+    // grays
     lightGray: '#D3D3D3',
     corduroy: '#526760',
-    mineral: '#374B4A'
+    mineral: '#374B4A',
+
+    // other
+    tango: '#F3851E'
 }
 
 export const theme = {

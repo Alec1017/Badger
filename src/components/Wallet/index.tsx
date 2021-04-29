@@ -1,25 +1,27 @@
 import React from 'react'
+import { useWeb3React } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers'
 
-import { WalletButton } from './style'
-import { shorten } from '../../utils'
+import { WalletButton, NetworkCard } from './style'
+import { shorten, NetworkLabels} from '../../utils'
+import { injectedConnector } from '../../connectors'
 
 
-type WalletProps = {
-    account: string,
-    active: boolean,
-    activate: (connector: any) => void,
-    deactivate: () => void,
-    connector: any
-}
 
-const Wallet = ({account, active, activate, deactivate, connector }: WalletProps) => {
+const Wallet = () => {
+    const { chainId, account, activate, deactivate, active } = useWeb3React<Web3Provider>()
 
-    const onClick = () => active ? deactivate() : activate(connector)
+    const onClick = () => active ? deactivate() : activate(injectedConnector)
+
+    const networkLabel = chainId ? NetworkLabels[chainId] : ''
 
     return (
-        <WalletButton onClick={onClick}>
-            {active ? shorten(account) : 'Connect Wallet'}
-        </WalletButton>
+        <div style={{display: 'flex'}}>
+            {networkLabel !== '' && <NetworkCard>{networkLabel}</NetworkCard>}
+            <WalletButton onClick={onClick}>
+                {active ? shorten(account || '') : 'Connect Wallet'}
+            </WalletButton>
+        </div>
     )
 }
 

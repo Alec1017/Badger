@@ -6,7 +6,8 @@ export const CardContainer = styled.div`
     border-radius: 0.7rem;
     border: 1px solid  ${props => props.theme.colors.black};
 
-    margin-left: 2rem;
+    margin-left: 2rem; // TODO: remove this after testing
+    margin-top: 2rem;  // TODO: remove this after testing
 
     padding: 1rem;
 `
@@ -17,7 +18,7 @@ export const CardContent = styled.div`
 `
 
 export const CardTitle = styled.div`
-    padding-left: 2rem;
+    padding-left: 1rem;
     font-weight: bold;
     font-size: 1.4rem;
 `
