@@ -19,8 +19,8 @@ function App() {
             <div>
                 <BadgeCard 
                     image='https://gateway.pinata.cloud/ipfs/QmYPp5PxM93L1wLRbiL9gTixWSNP18mAVRnxXV1VJpro39' 
-                    title='Donate $1000 to any charity' 
-                    description='By donating $1000 to any of these charities, you will receive a new NFT commemorating your generosity!' />
+                    title='Donate $20 to any charity' 
+                    description='By donating $20 to any of these charities, you will receive a new NFT commemorating your generosity!' />
             </div>
         </div>
     )

@@ -21,7 +21,10 @@ export const colors = {
 export const theme = {
     // Buttons
     buttonPrimary: colors.charm,
-    buttonSecondary: colors.white
+    buttonSecondary: colors.white,
+
+    // Colors
+    colors: colors
 }
 
 export const ResetStyle = createGlobalStyle`
