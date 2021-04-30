@@ -16,8 +16,14 @@ type BadgeCardProps = {
 const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
     const mintNFTContract = useMintNFTContract()
 
-    const mint = () => {
-        mintNFTContract?.functions.mintNFT(account, "https://gateway.pinata.cloud/ipfs/QmZjXRyaXyfoH8jwai1T42WKgrk4kDSqCbkfKQqMJDuCPN")
+    const uri = 'https://gateway.pinata.cloud/ipfs/QmZjXRyaXyfoH8jwai1T42WKgrk4kDSqCbkfKQqMJDuCPN'
+
+    const mint = async () => {
+        const tx = await mintNFTContract?.mintNFT(account, uri)
+
+        const receipt = await tx.wait()
+        
+        console.log(receipt)
     }
 
     return (
