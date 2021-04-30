@@ -3,17 +3,25 @@ import React from 'react'
 import { CardContainer, CardContent, CardTitle, CardDescription } from './style'
 import BadgeIcon from '../BadgeIcon'
 
+import { useMintNFTContract } from '../../hooks/useContract'
+
 
 type BadgeCardProps = {
     image: string,
     title: string,
-    description: string
+    description: string,
+    account: string
 }
 
+const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
+    const mintNFTContract = useMintNFTContract()
 
-const BadgeCard = ({image, title, description }: BadgeCardProps) => {
+    const mint = () => {
+        mintNFTContract?.functions.mintNFT(account, "https://gateway.pinata.cloud/ipfs/QmZjXRyaXyfoH8jwai1T42WKgrk4kDSqCbkfKQqMJDuCPN")
+    }
+
     return (
-        <CardContainer>
+        <CardContainer onClick={mint}>
             <CardContent>
                 <BadgeIcon src={image} />
                 <CardTitle>{title}</CardTitle>

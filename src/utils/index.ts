@@ -1,6 +1,6 @@
 import { Contract } from '@ethersproject/contracts'
 import { getAddress } from '@ethersproject/address'
-import { Web3Provider } from '@ethersproject/providers'
+import { Web3Provider, JsonRpcSigner } from '@ethersproject/providers'
 
 
 export const Networks: { [key: string]: number } = {
@@ -35,7 +35,16 @@ export function isAddress(value: any): string | false {
 }
 
 
-export function getContract(address: string, ABI: any, library: Web3Provider): Contract {
+export function getSigner(library: Web3Provider, account: string): JsonRpcSigner {
+    return library.getSigner(account).connectUnchecked()
+}
 
-    return new Contract(address, ABI, library)
+
+export function getProviderOrSigner(library: Web3Provider, account?: string): Web3Provider | JsonRpcSigner {
+    return account ? getSigner(library, account) : library
+}
+
+
+export function getContract(address: string, ABI: any, library: Web3Provider, account?: string): Contract {
+    return new Contract(address, ABI, getProviderOrSigner(library, account))
 }
