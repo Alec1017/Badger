@@ -4,11 +4,14 @@ import Wallet from './components/Wallet'
 import Nav from './components/Nav'
 import BadgeCard from './components/BadgeCard'
 
+import { NavTitle } from './components/Nav/style'
+
 function App() {
 
     return (
         <div>
             <Nav>
+                <NavTitle>Badger</NavTitle>
                 <Wallet />
             </Nav>
             <div>
