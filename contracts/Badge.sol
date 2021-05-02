@@ -7,11 +7,14 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract MyNFT is ERC721, Ownable {
+contract Badge is ERC721, Ownable {
     using Counters for Counters.Counter;
+
     Counters.Counter private _tokenIds;
 
     constructor() public ERC721("Dino", "BDG") {}
+
+    event Mint(address _address, uint256 _token_id);
 
     function mintNFT(address recipient, string memory tokenURI)
         public onlyOwner
@@ -23,6 +26,6 @@ contract MyNFT is ERC721, Ownable {
         _mint(recipient, newItemId);
         _setTokenURI(newItemId, tokenURI);
 
-        return newItemId;
+        emit Mint(address(this), newItemId);
     }
 }

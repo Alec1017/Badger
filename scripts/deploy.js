@@ -1,16 +1,16 @@
 const fs = require('fs')
-const contractABI = require("../src/artifacts/contracts/MyNFT.sol/MyNFT.json");
+const contractABI = require("../src/artifacts/contracts/Badge.sol/Badge.json");
 
 async function main() {
-    const MyNFT = await ethers.getContractFactory("MyNFT");
+    const Badge = await ethers.getContractFactory("Badge");
     
     // Start deployment, returning a promise that resolves to a contract object
-    const myNFT = await MyNFT.deploy();
-    console.log("Contract deployed to address:", myNFT.address);
+    const badge = await Badge.deploy();
+    console.log("Contract deployed to address:", badge.address);
 
-    contractABI['networkAddress'] = myNFT.address
+    contractABI['networkAddress'] = badge.address
 
-    await fs.promises.writeFile("./src/artifacts/contracts/MyNFT.sol/MyNFT.json", JSON.stringify(contractABI, null, 4), function(err, result) {
+    await fs.promises.writeFile("./src/artifacts/contracts/Badge.sol/Badge.json", JSON.stringify(contractABI, null, 4), function(err, result) {
       if (err) console.log('error', err);
     })
  }

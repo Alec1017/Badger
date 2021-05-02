@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { Contract, utils } from 'ethers'
 
 import { CardContainer, CardContent, CardTitle, CardDescription } from './style'
 import BadgeIcon from '../BadgeIcon'
 
-import { useMintNFTContract } from '../../hooks/useContract'
+import { useBadgeContract, badgeContractAddress } from '../../hooks/useContract'
 
 
 type BadgeCardProps = {
@@ -14,20 +15,26 @@ type BadgeCardProps = {
 }
 
 const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
-    const mintNFTContract = useMintNFTContract()
+    const badgeContract = useBadgeContract()
+
+    const filter = {
+        address: badgeContractAddress,
+        topics: [
+            utils.id('Mint(address,uint256)')
+        ]
+    }
 
     const uri = 'https://gateway.pinata.cloud/ipfs/QmZjXRyaXyfoH8jwai1T42WKgrk4kDSqCbkfKQqMJDuCPN'
 
-    const mint = async () => {
-        const tx = await mintNFTContract?.mintNFT(account, uri)
 
-        const receipt = await tx.wait()
-        
-        console.log(receipt)
-    }
+    useEffect(() => {
+        badgeContract?.once(filter, (address, token_id) => {
+            console.log(address, token_id.toNumber())
+        })
+    }, [badgeContract])
 
     return (
-        <CardContainer onClick={mint}>
+        <CardContainer onClick={() => badgeContract?.mintNFT(account, uri)}>
             <CardContent>
                 <BadgeIcon src={image} />
                 <CardTitle>{title}</CardTitle>
