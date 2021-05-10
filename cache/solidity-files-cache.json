@@ -536,8 +536,8 @@
       ]
     },
     "/home/alec/dev/badger/contracts/Badge.sol": {
-      "lastModificationDate": 1619982521022,
-      "contentHash": "54651e349ce9ec3093742289c8f46511",
+      "lastModificationDate": 1620682730643,
+      "contentHash": "472b142e8ee511bb588953248e6c234a",
       "sourceName": "contracts/Badge.sol",
       "solcConfig": {
         "version": "0.7.3",
@@ -564,7 +564,8 @@
       "imports": [
         "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/access/Ownable.sol"
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/math/SafeMath.sol"
       ],
       "versionPragmas": [
         ">=0.7.3"

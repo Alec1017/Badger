@@ -3,9 +3,10 @@ const contractABI = require("../src/artifacts/contracts/Badge.sol/Badge.json");
 
 async function main() {
     const Badge = await ethers.getContractFactory("Badge");
+    const threshold = ethers.utils.parseEther('0.1').toString()
     
     // Start deployment, returning a promise that resolves to a contract object
-    const badge = await Badge.deploy();
+    const badge = await Badge.deploy('0x86e01A74081EC882eEA1de77e8C56f71783CFfbD', threshold); // args go inside the deploy()
     console.log("Contract deployed to address:", badge.address);
 
     contractABI['networkAddress'] = badge.address

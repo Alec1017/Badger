@@ -21,7 +21,7 @@ function App() {
                 <BadgeCard
                     account={account || ''}
                     image='https://gateway.pinata.cloud/ipfs/QmYPp5PxM93L1wLRbiL9gTixWSNP18mAVRnxXV1VJpro39' 
-                    title='Donate $20 to any charity' 
+                    title='Donate 0.05 ETH to a charity' 
                     description='By donating $20 to any of these charities, you will receive a new NFT commemorating your generosity!' />
             </div>
         </div>

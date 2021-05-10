@@ -10,10 +10,6 @@ export const CardContainer = styled.div`
     margin-top: 2rem;  // TODO: remove this after testing
 
     padding: 1rem;
-
-    &:hover {
-        cursor: pointer;
-    }
 `
 
 export const CardContent = styled.div`
