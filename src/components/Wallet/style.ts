@@ -28,11 +28,11 @@ export const WalletButton = styled.button`
     &:hover {
         background: ${props => props.theme.buttonPrimary};
         color: ${props => props.theme.buttonSecondary};
-        border: 2px solid ${props => props.theme.buttonSecondary};
         cursor: pointer;
     }
 
     &:active {
-        background: ${props => darken(0.2, props.theme.buttonPrimary)}
+        background: ${props => darken(0.2, props.theme.buttonPrimary)};
+        border-color: ${props => darken(0.2, props.theme.buttonPrimary)};
     }
 `

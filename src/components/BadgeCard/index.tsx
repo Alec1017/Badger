@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { utils } from 'ethers'
 
-import { CardContainer, CardContent, CardTitle, CardDescription } from './style'
+import { CardContainer, CardContent, CardTitle, CardDescription, CardDonateButton, CardClaimNFT } from './style'
 import BadgeIcon from '../BadgeIcon'
+import ProgressBar from '../ProgressBar'
 
 import { useBadgeContract, badgeContractAddress } from '../../hooks/useContract'
 
-enum Qualification {
-    Qualified = 'qualified',
-    NotQaulified = 'not qualified'
-}
 
 type BadgeCardProps = {
     image: string,
@@ -20,7 +17,6 @@ type BadgeCardProps = {
 
 const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
     const badgeContract = useBadgeContract()
-    const [qualificationStatus, setQualificationStatus] = useState(Qualification.NotQaulified)
     const [progressStatus, setProgressStatus] = useState('')
 
     const uri = 'https://gateway.pinata.cloud/ipfs/QmZjXRyaXyfoH8jwai1T42WKgrk4kDSqCbkfKQqMJDuCPN'
@@ -38,18 +34,8 @@ const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
             console.log(address, token_id.toNumber())
         })
 
-        checkQualified()
         checkProgress()
     }, [account])
-
-
-    const checkQualified = async () => {
-        let result = await badgeContract?.checkQualification()
-
-        if (result != null) {
-            setQualificationStatus(result ? Qualification.Qualified : Qualification.NotQaulified)
-        }
-    }
 
 
     const checkProgress = async () => {
@@ -68,7 +54,6 @@ const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
         console.log(result)
 
         checkProgress()
-        checkQualified()
     }
 
     return (
@@ -79,11 +64,13 @@ const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
                     <BadgeIcon src={image} />
                     <CardTitle>{title}</CardTitle>
                 </CardContent>
-                <button onClick={donate}>donate</button>
-                <div>status: {qualificationStatus}</div>
-                {Number(progressStatus) < 0.05 
-                    ? <div>progress: {progressStatus} / 0.05</div> 
-                    : <button onClick={() => badgeContract?.mintNFT(uri)}>claim NFT</button>}
+                <CardContent>
+                    <CardDonateButton onClick={donate}>donate</CardDonateButton>
+                    <ProgressBar percentage={50} />
+                    {/* {Number(progressStatus) <= 0.1 
+                        ? <div>progress: {progressStatus} / 0.05</div> 
+                        : <CardClaimNFT onClick={() => badgeContract?.mintNFT(uri)}>claim NFT</CardClaimNFT>} */}
+                </CardContent>
                 <CardDescription>{description}</CardDescription>
               </CardContainer>
             : <div></div>

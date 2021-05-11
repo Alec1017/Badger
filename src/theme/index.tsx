@@ -18,7 +18,8 @@ export const colors = {
     mineral: '#374B4A',
 
     // other
-    tango: '#F3851E'
+    tango: '#F3851E',
+    emerald: '#71b086'
 }
 
 export const theme = {
