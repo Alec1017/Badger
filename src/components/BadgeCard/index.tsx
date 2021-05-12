@@ -12,10 +12,11 @@ type BadgeCardProps = {
     image: string,
     title: string,
     description: string,
-    account: string
+    account: string,
+    targetDonationValue: number
 }
 
-const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
+const BadgeCard = ({image, title, description, account, targetDonationValue }: BadgeCardProps) => {
     const badgeContract = useBadgeContract()
     const [progressStatus, setProgressStatus] = useState('')
 
@@ -64,13 +65,14 @@ const BadgeCard = ({image, title, description, account }: BadgeCardProps) => {
                     <BadgeIcon src={image} />
                     <CardTitle>{title}</CardTitle>
                 </CardContent>
-                <CardContent>
+                <div style={{display: 'flex', marginLeft: '6rem', alignItems: 'center'}}>
                     <CardDonateButton onClick={donate}>donate</CardDonateButton>
-                    <ProgressBar percentage={50} />
-                    {/* {Number(progressStatus) <= 0.1 
-                        ? <div>progress: {progressStatus} / 0.05</div> 
-                        : <CardClaimNFT onClick={() => badgeContract?.mintNFT(uri)}>claim NFT</CardClaimNFT>} */}
-                </CardContent>
+                    <div style={{paddingLeft: '2rem'}}>
+                        {Number(progressStatus) / targetDonationValue < 1 
+                            ? <ProgressBar percentage={100 * (Number(progressStatus) / targetDonationValue)} />
+                            : <CardClaimNFT onClick={() => badgeContract?.mintNFT(uri)}>claim NFT</CardClaimNFT>}
+                    </div>
+                </div>
                 <CardDescription>{description}</CardDescription>
               </CardContainer>
             : <div></div>

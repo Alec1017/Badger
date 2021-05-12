@@ -19,7 +19,8 @@ export const colors = {
 
     // other
     tango: '#F3851E',
-    emerald: '#71b086'
+    emerald: '#71b086',
+    gold: '#FFE797'
 }
 
 export const theme = {
