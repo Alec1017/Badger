@@ -1,9 +1,9 @@
-const fs = require('fs')
+const fs = require('fs');
 const contractABI = require("../src/artifacts/contracts/Badge.sol/Badge.json");
 
-async function main() {
+async function deploy() {
     const Badge = await ethers.getContractFactory("Badge");
-    const threshold = ethers.utils.parseEther('0.1').toString()
+    const threshold = ethers.utils.parseEther('0.1').toString();
     
     // Start deployment, returning a promise that resolves to a contract object
     const badge = await Badge.deploy('0x86e01A74081EC882eEA1de77e8C56f71783CFfbD', threshold); // args go inside the deploy()
@@ -14,11 +14,11 @@ async function main() {
     await fs.promises.writeFile("./src/artifacts/contracts/Badge.sol/Badge.json", JSON.stringify(contractABI, null, 4), function(err, result) {
       if (err) console.log('error', err);
     })
- }
+}
  
- main()
-   .then(() => process.exit(0))
-   .catch(error => {
-     console.error(error);
-     process.exit(1);
-   });
+deploy()
+    .then(() => process.exit(0))
+    .catch(error => {
+        console.error(error);
+        process.exit(1);
+    });

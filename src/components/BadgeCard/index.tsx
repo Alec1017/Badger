@@ -4,6 +4,7 @@ import { utils } from 'ethers'
 import { CardContainer, CardContent, CardTitle, CardDescription, CardDonateButton, CardClaimNFT } from './style'
 import BadgeIcon from '../BadgeIcon'
 import ProgressBar from '../ProgressBar'
+import DonateModal from '../Modals/DonateModal'
 
 import { useBadgeContract, badgeContractAddress } from '../../hooks/useContract'
 
@@ -19,6 +20,8 @@ type BadgeCardProps = {
 const BadgeCard = ({image, title, description, account, targetDonationValue }: BadgeCardProps) => {
     const badgeContract = useBadgeContract()
     const [progressStatus, setProgressStatus] = useState('')
+
+    const [showDonateModal, setShowDonateModal] = useState(false)
 
     const uri = 'https://gateway.pinata.cloud/ipfs/QmZjXRyaXyfoH8jwai1T42WKgrk4kDSqCbkfKQqMJDuCPN'
 
@@ -47,36 +50,31 @@ const BadgeCard = ({image, title, description, account, targetDonationValue }: B
         }
     }
 
-
-    const donate = async () => {
-        let tx = await badgeContract?.donate({ value: utils.parseEther('0.05') })
-        let result = await tx.wait()
-
-        console.log(result)
-
-        checkProgress()
-    }
+    const toggleDonateModal = () => setShowDonateModal(true)
 
     return (
         <>
-        {account 
-            ? <CardContainer>
-                <CardContent>
-                    <BadgeIcon src={image} />
-                    <CardTitle>{title}</CardTitle>
-                </CardContent>
-                <div style={{display: 'flex', marginLeft: '6rem', alignItems: 'center'}}>
-                    <CardDonateButton onClick={donate}>donate</CardDonateButton>
-                    <div style={{paddingLeft: '2rem'}}>
-                        {Number(progressStatus) / targetDonationValue < 1 
-                            ? <ProgressBar percentage={100 * (Number(progressStatus) / targetDonationValue)} />
-                            : <CardClaimNFT onClick={() => badgeContract?.mintNFT(uri)}>claim NFT</CardClaimNFT>}
-                    </div>
-                </div>
-                <CardDescription>{description}</CardDescription>
-              </CardContainer>
-            : <div></div>
-        }
+            {account 
+                ? <>
+                    <CardContainer>
+                        <CardContent>
+                            <BadgeIcon src={image} />
+                            <CardTitle>{title}</CardTitle>
+                        </CardContent>
+                        <div style={{display: 'flex', marginLeft: '6rem', alignItems: 'center'}}>
+                            <CardDonateButton onClick={toggleDonateModal}>donate</CardDonateButton>
+                            <div style={{paddingLeft: '3rem'}}>
+                                {Number(progressStatus) / targetDonationValue < 1 
+                                    ? <ProgressBar percentage={100 * (Number(progressStatus) / targetDonationValue)} />
+                                    : <CardClaimNFT onClick={() => badgeContract?.mintNFT(uri)}>claim NFT</CardClaimNFT>}
+                            </div>
+                        </div>
+                        <CardDescription>{description}</CardDescription>
+                    </CardContainer>
+                    <DonateModal title={`Donate ${0.15}  ETH`} visible={showDonateModal} setVisible={setShowDonateModal}></DonateModal>
+                  </>
+                : null
+            }
         </>
     )
 }

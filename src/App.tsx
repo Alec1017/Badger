@@ -5,7 +5,6 @@ import { Web3Provider } from '@ethersproject/providers'
 import Wallet from './components/Wallet'
 import Nav from './components/Nav'
 import BadgeCard from './components/BadgeCard'
-import Modal from './components/Modals'
 
 import { NavTitle } from './components/Nav/style'
 
@@ -22,11 +21,10 @@ function App() {
                 <BadgeCard
                     account={account || ''}
                     image='https://gateway.pinata.cloud/ipfs/QmYPp5PxM93L1wLRbiL9gTixWSNP18mAVRnxXV1VJpro39' 
-                    title={`Donate ${0.15}  ETH to a charity`}
-                    description='By donating $20 to any of these charities, you will receive a new NFT commemorating your generosity!'
+                    title={`Donate ${0.15} ETH to a charity`}
+                    description={`By donating ${0.15} ETH to any of these charities, you will receive a new NFT commemorating your generosity!`}
                     targetDonationValue={0.1} 
                 />
-                <Modal></Modal>
             </div>
         </div>
     )

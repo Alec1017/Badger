@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { lighten } from 'polished'
 
 import { colors } from './../../theme'
 
@@ -55,8 +54,8 @@ export const ModalBackground = styled.div<{visible: boolean}>(
 
 export const ModalContainer = styled.div<{visible: boolean}>(
     ({ visible }) => `
-        width: 25rem;
-        height: 25rem;
+        width: 20rem;
+        // height: 25rem;
         border-radius: 0.7rem;
         border: 1px solid  ${colors.black};
         background-color: ${colors.white};

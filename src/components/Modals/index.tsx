@@ -1,25 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { ModalContainer, Hamburger, HamburgerLine, ModalHeader, ModalContent, ModalTitle, ModalBackground } from './style'
 
-const Modal = ({ children }: { children?: any }) => {
-    const [modalVisibility, setModalVisibility] = useState(true)
-    
-    return (
-        <>
-            <ModalBackground visible={modalVisibility} />
-            <ModalContainer visible={modalVisibility}>
-                <ModalHeader>
-                    <ModalTitle>some title</ModalTitle>
-                    <Hamburger onClick={() => setModalVisibility(!modalVisibility)}>
-                        <HamburgerLine />
-                        <HamburgerLine />
-                    </Hamburger>
-                </ModalHeader>
-                <ModalContent>{ children }</ModalContent>
-            </ModalContainer>
-        </>
-    )
+
+type ModalProps = { 
+    children?: any, 
+    title: string, 
+    visible: boolean, 
+    setVisible: (v: boolean) => any 
 }
+
+const Modal = ({ children, title, visible, setVisible }: ModalProps) => (
+    <>
+        <ModalBackground visible={visible} />
+        <ModalContainer visible={visible}>
+            <ModalHeader>
+                <ModalTitle>{title}</ModalTitle>
+                <Hamburger onClick={() => setVisible(false)}>
+                    <HamburgerLine />
+                    <HamburgerLine />
+                </Hamburger>
+            </ModalHeader>
+            <ModalContent>{ children }</ModalContent>
+        </ModalContainer>
+    </>
+)
+
 
 export default Modal
