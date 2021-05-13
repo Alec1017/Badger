@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { utils } from 'ethers'
 
-import { DonateButton } from './style'
+import { DonateButton, CharitySelect } from './style'
 import { useBadgeContract } from '../../../hooks/useContract'
 import Modal from '../../Modals'
 
@@ -24,8 +24,15 @@ const DonateModal = ({ title, visible, setVisible }: DonateModalProps) => {
 
     return (
         <Modal title={title} visible={visible} setVisible={setVisible}>
-            <div>here is some test text</div>
-            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div style={{paddingTop: '0.5rem'}}>
+                <div style={{paddingBottom: '1rem'}}>Select a charity</div>
+                <div>
+                    <CharitySelect>test</CharitySelect>
+                    <CharitySelect></CharitySelect>
+                    <CharitySelect></CharitySelect>
+                </div>
+            </div>
+            <div style={{display: 'flex', justifyContent: 'center', paddingTop: '1rem'}}>
                 <DonateButton onClick={donate}>Donate</DonateButton>
             </div>
         </Modal>
