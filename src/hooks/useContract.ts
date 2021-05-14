@@ -8,19 +8,19 @@ import { getContract } from '../utils'
 import { abi as BADGE_ABI, networkAddress as BADGE_NETWORK_ADDRESS } from '../artifacts/contracts/Badge.sol/Badge.json'
 
 
-function useContract(address: string | undefined, ABI: any, withSigner = true): Contract | null {
+function useContract(address: string | undefined, abi: any, withSigner = true): Contract | null {
     const { library, account } = useWeb3React()
   
     return useMemo(() => {
-        if (!address || !ABI || !library) return null
+        if (!address || !abi || !library) return null
 
         try {
-            return getContract(address, ABI, library, withSigner && account ? account : undefined)
+            return getContract(address, abi, library, withSigner && account ? account : undefined)
         } catch (error) {
             console.error('Failed to get contract', error)
             return null
         }
-    }, [address, ABI, library, withSigner, account])
+    }, [address, abi, library, withSigner, account])
 }
 
 

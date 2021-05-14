@@ -45,6 +45,6 @@ export function getProviderOrSigner(library: Web3Provider, account?: string): We
 }
 
 
-export function getContract(address: string, ABI: any, library: Web3Provider, account?: string): Contract {
-    return new Contract(address, ABI, getProviderOrSigner(library, account))
+export function getContract(address: string, abi: any, library: Web3Provider, account?: string): Contract {
+    return new Contract(address, abi, getProviderOrSigner(library, account))
 }
