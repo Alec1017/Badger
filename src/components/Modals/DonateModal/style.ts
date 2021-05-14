@@ -26,3 +26,33 @@ export const DonateButton = styled.button`
         border-color: ${props => darken(0.2, props.theme.colors.emerald)};
     }
 `
+
+export const DonateInputContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    align-items: center;
+    margin-top: 2rem;
+
+    border-radius: 0.7rem;
+    border: 2px solid ${colors.athens};
+
+    &:hover {
+        border-color: ${colors.ghost};
+    }
+`
+
+export const DonateInputCurrency = styled.div`
+    font-size: 1.7rem;
+    padding-right: 1rem;
+`
+
+export const DonateInput = styled.input`
+    text-align: right;
+    font-size: 2rem;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    outline: none;
+
+`

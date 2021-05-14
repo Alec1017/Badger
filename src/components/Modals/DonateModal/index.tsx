@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { utils } from 'ethers'
 
-import { DonateButton } from './style'
+import { DonateButton, DonateInput, DonateInputContainer, DonateInputCurrency } from './style'
 import { useBadgeContract } from '../../../hooks/useContract'
 import Modal from '../../Modals'
 import CharitySelect from './CharitySelect'
@@ -45,6 +45,20 @@ const DonateModal = ({ title, visible, setVisible }: DonateModalProps) => {
                     })}
                 </div>
             </div>
+            <DonateInputContainer>
+                <DonateInputCurrency>ETH</DonateInputCurrency>
+                <DonateInput 
+                    inputMode='decimal' 
+                    autoComplete='off' 
+                    autoCorrect='off' 
+                    type='text' 
+                    pattern='^[0-9]*[.,]?[0-9]*$' 
+                    placeholder='0.0' 
+                    minLength={1}
+                    maxLength={79}
+                    spellCheck='false' 
+                />
+            </DonateInputContainer>
             <div style={{display: 'flex', justifyContent: 'center', paddingTop: '1rem'}}>
                 <DonateButton onClick={donate}>Donate</DonateButton>
             </div>
