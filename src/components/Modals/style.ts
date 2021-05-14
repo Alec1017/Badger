@@ -54,7 +54,7 @@ export const ModalBackground = styled.div<{visible: boolean}>(
 
 export const ModalContainer = styled.div<{visible: boolean}>(
     ({ visible }) => `
-        width: 20rem;
+        width: 25rem;
         // height: 25rem;
         border-radius: 0.7rem;
         border: 1px solid  ${colors.black};

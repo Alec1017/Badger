@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { utils } from 'ethers'
 
-import { DonateButton, CharitySelect } from './style'
+import { DonateButton } from './style'
 import { useBadgeContract } from '../../../hooks/useContract'
 import Modal from '../../Modals'
+import CharitySelect from './CharitySelect'
 
 
 type DonateModalProps = { 
@@ -12,8 +13,15 @@ type DonateModalProps = {
     setVisible: (v: boolean) => any 
 }
 
+const charityOptions = [
+    { name: 'India COVID relief', address: '0x73hjd983n' },
+    { name: 'India COVID relief', address: '0x73hjd983n' },
+    { name: 'India COVID relief', address: '0x73hjd983n' }
+]
+
 const DonateModal = ({ title, visible, setVisible }: DonateModalProps) => {
     const badgeContract = useBadgeContract()
+    const [activeCharity, setActiveCharity] = useState(-1)
 
     const donate = async () => {
         let tx = await badgeContract?.donate({ value: utils.parseEther('0.05') })
@@ -27,9 +35,14 @@ const DonateModal = ({ title, visible, setVisible }: DonateModalProps) => {
             <div style={{paddingTop: '0.5rem'}}>
                 <div style={{paddingBottom: '1rem'}}>Select a charity</div>
                 <div>
-                    <CharitySelect>test</CharitySelect>
-                    <CharitySelect></CharitySelect>
-                    <CharitySelect></CharitySelect>
+                    {charityOptions.map((charity, idx) => {
+                        return <CharitySelect 
+                                    name={charity.name} 
+                                    address={charity.address} 
+                                    selected={activeCharity === idx} 
+                                    onClick={() => setActiveCharity(idx) } 
+                                />
+                    })}
                 </div>
             </div>
             <div style={{display: 'flex', justifyContent: 'center', paddingTop: '1rem'}}>

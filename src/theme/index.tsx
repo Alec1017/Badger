@@ -13,6 +13,10 @@ export const colors = {
     charm: '#DB7093',
 
     // grays
+    athens: '#edeef2',
+    ghost: '#ced0d9',
+    smoke: '#F0F0F0',
+    gainsboro: '#DCDCDC',
     lightGray: '#D3D3D3',
     corduroy: '#526760',
     mineral: '#374B4A',
